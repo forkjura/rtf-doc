@@ -7,6 +7,16 @@ import (
 	"unicode/utf16"
 )
 
+const kEndOfASCII = 0x7F
+const kMaxSigned16BitValue = 0x7FFF
+const kStartOfUnicodePlane1 = 0x10000
+const kUTF16HighSurrogateStart = 0xD800
+const kUTF16LowSurrogateStart = 0xDC00
+const kHigh10Bits = 0xFFC00
+const kHigh10BitsShiftToLow10Bits = 0x400
+const kLow10Bits = 0x3FF
+const kUnsigned16BitValueIntoSigned16BitValueRange = 0x10000
+
 func convertNonASCIIToUTF16(text string) string {
 	var res strings.Builder
 	for _, r := range text {
